@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.boss.hong.user.mapper.LoginUserMapper">
+  <resultMap id="BaseResultMap" type="org.boss.hong.user.dos.LoginUserDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="wechat_user_info" jdbcType="VARCHAR" property="wechatUserInfo" />
+    <result column="login_phone_number" jdbcType="VARCHAR" property="loginPhoneNumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, created_time, updated_time, open_id, wechat_user_info, login_phone_number
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from boss_login_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from boss_login_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.boss.hong.user.dos.LoginUserDO">
+    insert into boss_login_user (id, created_time, updated_time, 
+      open_id, wechat_user_info, login_phone_number
+      )
+    values (#{id,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{openId,jdbcType=VARCHAR}, #{wechatUserInfo,jdbcType=VARCHAR}, #{loginPhoneNumber,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.boss.hong.user.dos.LoginUserDO">
+    insert into boss_login_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="wechatUserInfo != null">
+        wechat_user_info,
+      </if>
+      <if test="loginPhoneNumber != null">
+        login_phone_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatUserInfo != null">
+        #{wechatUserInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPhoneNumber != null">
+        #{loginPhoneNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.boss.hong.user.dos.LoginUserDO">
+    update boss_login_user
+    <set>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatUserInfo != null">
+        wechat_user_info = #{wechatUserInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPhoneNumber != null">
+        login_phone_number = #{loginPhoneNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.boss.hong.user.dos.LoginUserDO">
+    update boss_login_user
+    set created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      open_id = #{openId,jdbcType=VARCHAR},
+      wechat_user_info = #{wechatUserInfo,jdbcType=VARCHAR},
+      login_phone_number = #{loginPhoneNumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

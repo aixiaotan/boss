@@ -33,7 +33,7 @@
     </dependency>
   </dependencies>
   
-	<build>
+<!-- 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -76,7 +76,7 @@
 				</executions>
 			</plugin>
 
-			<!-- 禁用spring-boot打包插件 -->
+			禁用spring-boot打包插件
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -87,6 +87,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-	</build>
+	</build> -->
 	
 </project>

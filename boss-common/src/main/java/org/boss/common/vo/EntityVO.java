@@ -1,16 +1,16 @@
-package org.boss.common.dto;
+package org.boss.common.vo;
 
 import java.util.Date;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- * 实体DTO基类
+ * 实体VO基类
  * @author peiHongWei
  *
  * 2018年8月8日
  */
-public class EntityDTO extends AbstractDTO {
+public class EntityVO extends AbstractVO {
 	/**
 	 * 
 	 */

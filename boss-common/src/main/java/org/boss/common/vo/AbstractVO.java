@@ -7,8 +7,10 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 
 /**
- * DTO基类
+ * 实体VO基类
+ * @author peiHongWei
  *
+ * 2018年8月8日
  */
 public abstract class AbstractVO implements Serializable {
 

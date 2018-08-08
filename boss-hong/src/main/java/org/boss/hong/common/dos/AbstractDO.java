@@ -1,4 +1,4 @@
-package org.boss.common.dto;
+package org.boss.hong.common.dos;
 
 import java.io.Serializable;
 
@@ -7,12 +7,12 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 
 /**
- * 实体DTO基类
+ * 实体DO基类
  * @author peiHongWei
  *
  * 2018年8月8日
  */
-public abstract class AbstractDTO implements Serializable {
+public abstract class AbstractDO implements Serializable {
 
 
 	private static final long serialVersionUID = 535L;
