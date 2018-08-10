@@ -22,7 +22,7 @@ public class LoginUserController {
 
 	@Autowired 
 	private LoginUserService loginUserService;
-	
+	 
 	@GetMapping(value = "/loginUser/userId/{userId}")
 	public LoginUserVO loginUser(@PathVariable Integer userId) {
 		LoginUserVO loginUserVO = new LoginUserVO();
