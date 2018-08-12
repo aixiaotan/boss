@@ -1,0 +1,30 @@
+MYSQL:WARN: Establishing SSL connection without server's identity verification is not recommended.
+2017年08月31日 17:31:36
+阅读数：12991
+在JDBC连接Mysql数据库的过程中出现了如下的警告信息:
+
+ WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+
+是Mysql数据库的SSL连接问题，提示警告不建议使用没有带服务器身份验证的SSL连接，是在MYSQL5.5.45+, 5.6.26+ and 5.7.6+版本中才有的这个问题。解决办法在警告中已经说明了：
+
+1.在数据库连接的url中添加useSSL=false;
+2.url中添加useSSL=true，并且提供服务器的验证证书。
+如果只是做一个测试的话，没必要搞证书那么麻烦啦，在连接后添加一个useSSL=false即可，例如：
+
+jdbc:mysql://localhost:3306/test?useSSL=false
+在使用Java进行JDBC连接的时候，可以在Properties对象中设置useSSL的值为false，但是和写在链接中是一样的。比如
+
+
+Properties properties = new Properties();
+properties.setProperty("user", "root");
+properties.setProperty("password", "milos23);
+properties.setProperty("useSSL", "false");
+properties.setProperty("autoReconnect", "true");
+try (Connection conn = DriverManager.getConnection(connectionUrl, properties)) {
+	...
+} catch (SQLException e) {
+	...
+}
+其实这个是不用写出来的，但是一个同事懒啊，都不知道看警告信息，直接来问我，写给懒的人看的，哈哈
+
+src/redis-server /redis-3.2.9/redis.conf
