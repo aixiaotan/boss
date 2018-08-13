@@ -21,24 +21,24 @@ public class LoginUserServiceImpl implements LoginUserService{
 
 	@Override
 	public LoginUserDTO loginUser(Integer id) {
-		Redis redis = new Redis();
-		ShardedJedis jedis = redis.getRedis();
-		if(id ==1) {
-			String str = jedis.get("trt");
-			if(str != null && str.length() != 0) {
-				LoginUserDTO dto = JSONObject.parseObject(str, LoginUserDTO.class);
-				return dto;
-			}
-		}
+//		Redis redis = new Redis();
+//		ShardedJedis jedis = redis.getRedis();
+//		if(id ==1) {
+//			String str = jedis.get("trt");
+//			if(str != null && str.length() != 0) {
+//				LoginUserDTO dto = JSONObject.parseObject(str, LoginUserDTO.class);
+//				return dto;
+//			}
+//		}
 		LoginUserDO loginUserDO = loginUserMapper.selectByPrimaryKey(id);
 		if(null != loginUserDO) {
 			LoginUserDTO loginUserDTO = new LoginUserDTO();
 			BeanUtils.copyProperties(loginUserDO, loginUserDTO);
-			LoginUserDTO d2 = new LoginUserDTO();
-			BeanUtils.copyProperties(loginUserDO, d2);
-			d2.setLoginPhoneNumber("12222222222222222");
-			d2.setWechatUserInfo("改变了内容了");
-			jedis.set("trt", JSONObject.toJSONString(loginUserDTO).toString());
+//			LoginUserDTO d2 = new LoginUserDTO();
+//			BeanUtils.copyProperties(loginUserDO, d2);
+//			d2.setLoginPhoneNumber("12222222222222222");
+//			d2.setWechatUserInfo("改变了内容了");
+//			jedis.set("trt", JSONObject.toJSONString(loginUserDTO).toString());
 			return loginUserDTO;
 		}
 		return null;
