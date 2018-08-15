@@ -32,4 +32,14 @@ public class LoginUserController {
 		}
 		return loginUserVO;
 	}
+	
+	@GetMapping(value = "/")
+	public LoginUserVO loginUserByUserId(@PathVariable Integer userId) {
+		LoginUserVO loginUserVO = new LoginUserVO();
+		LoginUserDTO loginUserDTO = loginUserService.loginUser(userId);
+		if(loginUserDTO != null) {
+			BeanUtils.copyProperties(loginUserDTO, loginUserVO);
+		}
+		return loginUserVO;
+	}
 }
