@@ -33,7 +33,7 @@ public class LoginUserController {
 		return loginUserVO;
 	}
 	
-	@GetMapping(value = "/")
+	@GetMapping(value = "/{userId}")
 	public LoginUserVO loginUserByUserId(@PathVariable Integer userId) {
 		LoginUserVO loginUserVO = new LoginUserVO();
 		LoginUserDTO loginUserDTO = loginUserService.loginUser(userId);
