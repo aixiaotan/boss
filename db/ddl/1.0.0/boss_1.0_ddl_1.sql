@@ -177,9 +177,9 @@ create table `boss_order` (
   `order_amount` decimal(9,2) not null comment '订单金额',
   `agree_to_policy` varchar(1) not null comment '是否同意政策协议和退换货政策，0-不同意，1-同意',
   `order_status` varchar(2) not null comment '订单状态，01-待发货，02-配送中，03-已完成，04-已取消',
-  `pay_status` varchar(2) not null comment '订单状态，01-待支付，02-已支付，03-已退款',
   `delete_time` datetime default null comment '删除时间',
-   key `login_user_id` (`login_user_id`)
+   key `login_user_id` (`login_user_id`),
+   key `order_no` (`order_no`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment 'boss订单表';
 
 
@@ -187,11 +187,25 @@ create table `boss_order_ext` (
   `id` int(11) primary key   not null auto_increment comment '主键',
   `created_time` datetime not null comment '创建时间',
   `updated_time` datetime not null comment '修改时间',
-  `order_id` varchar(20) not null comment '订单号',
+  `order_no` varchar(20) not null comment '订单号',
   `express_company` varchar(2) default null comment '快递公司，dist表express_company',
   `express_no` varchar(30) default null comment '快递公司，dist表express_company',
   `delivery_time` datetime default null comment '发货时间',
-   key `order_id` (`order_id`)
+   key `order_no` (`order_no`)
+) engine=innodb auto_increment=1 default charset=utf8 comment 'boss订单表';
+
+
+create table `boss_pay` (
+  `id` int(11) primary key   not null auto_increment comment '主键',
+  `created_time` datetime not null comment '创建时间',
+  `updated_time` datetime not null comment '修改时间',
+  `serial_no` varchar(20) not null comment '支付流水号',
+  `order_no` varchar(20) not null comment '订单号',
+  `order_amount` decimal(9,2) not null comment '订单金额',
+  `pay_amount` decimal(9,2) not null comment '支付金额',
+  `pay_type` varchar(30) default null comment '支付方式',
+  `pay_status` varchar(2) not null comment '订单状态，01-待支付，02-已支付，03-已退款',
+   key `order_no` (`order_no`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment 'boss订单表';
 
 
